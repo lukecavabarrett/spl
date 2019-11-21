@@ -5,6 +5,12 @@ cc_library(
 )
 
 cc_library(
+    name = "location",
+    hdrs = ["location.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
     name = "expression",
     hdrs = ["expression.h"],
     visibility = ["//visibility:public"],
@@ -39,12 +45,21 @@ cc_library(
     deps = [":expression"],
 )
 
+cc_library(
+    name = "construct",
+    hdrs = ["construct.h"],
+    visibility = ["//visibility:public"],
+    deps = [":expression"],
+)
+
 cc_test(
     name = "expression_test",
     srcs = ["expression_test.cc"],
     deps = [
         ":boolean",
+        ":construct",
         ":expression",
+        ":location",
         ":natural",
         ":operation",
         "@googletest//:gtest_main",

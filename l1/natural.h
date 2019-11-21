@@ -12,11 +12,12 @@ public:
     typedef uint64_t data_t;
     [[nodiscard]] bool is_natural() const final { return true; }
     explicit natural(const data_t d) : data(d) {}
-    [[nodiscard]] data_t tp_cpp_type() const { return data; }
+    [[nodiscard]] data_t to_cpp_type() const { return data; }
     [[nodiscard]] pointer reduce(storage& s) const final {
         return std::make_shared<const natural>(data);
     }
     static ptr dyn_cast(pointer x){return std::dynamic_pointer_cast<const natural>(x);}
+    [[nodiscard]] virtual std::string to_string() const final { return std::to_string(data); }
 private:
     const data_t data;
 };

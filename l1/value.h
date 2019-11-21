@@ -8,6 +8,7 @@ namespace l1 {
 
 class value : public expression {
 public:
+    typedef std::shared_ptr<const value> ptr;
     [[nodiscard]] bool is_value() const final {return true;}
     [[nodiscard]] virtual bool is_natural() const {return false;}
     [[nodiscard]] virtual bool is_boolean() const {return false;}
@@ -23,6 +24,8 @@ public:
         return std::make_shared<const unit>();
     }
     static ptr dyn_cast(pointer x){return std::dynamic_pointer_cast<const unit>(x);}
+    [[nodiscard]] virtual std::string to_string() const final { return "()"; }
+
 private:
 };
 

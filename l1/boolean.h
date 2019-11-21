@@ -10,20 +10,22 @@ namespace l1 {
 class boolean : public value {
 public:
     typedef std::shared_ptr<const boolean> ptr;
-    [[nodiscard]] bool is_boolean() const final {return true;}
+    [[nodiscard]] bool is_boolean() const final { return true; }
     explicit boolean(const bool d) : data(d) {}
-    [[nodiscard]] bool tp_cpp_type() const {return data;}
+    [[nodiscard]] bool tp_cpp_type() const { return data; }
 
-    [[nodiscard]] pointer reduce(storage& s) const final {
+    [[nodiscard]] pointer reduce(storage &s) const final {
         return std::make_shared<const boolean>(data);
     }
-    static ptr dyn_cast(pointer x){return std::dynamic_pointer_cast<const boolean>(x);}
+    static ptr dyn_cast(pointer x) { return std::dynamic_pointer_cast<const boolean>(x); }
+
+    [[nodiscard]] virtual std::string to_string() const final { return data ? "true" : "false"; }
 private:
     const bool data;
 };
 
 
-inline expression::ptr make_boolean(const bool d){
+inline expression::ptr make_boolean(const bool d) {
     return std::make_shared<const boolean>(d);
 }
 
