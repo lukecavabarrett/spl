@@ -10,7 +10,7 @@ namespace l1 {
 namespace {
 
 TEST(SharedPtr, Casting) {
-    expression::nome_ptr_pubblico e = std::make_shared<natural>(42);
+    expression::ptr e = std::make_shared<natural>(42);
     EXPECT_TRUE(e->is_value());
     std::shared_ptr<const value> v = std::dynamic_pointer_cast<const value>(e);
     EXPECT_FALSE(v->is_boolean());
@@ -20,9 +20,9 @@ TEST(SharedPtr, Casting) {
 }
 
 TEST(Expression,Reduce){
-    expression::nome_ptr_pubblico e = make_plus(make_natural(100), make_natural(1));
+    expression::ptr e = make_plus(make_natural(100), make_natural(1));
     storage s;
-    expression::nome_ptr_pubblico e_star = e->reduce(s);
+    expression::ptr e_star = e->reduce(s);
     EXPECT_TRUE(e_star->is_value());
 
 }

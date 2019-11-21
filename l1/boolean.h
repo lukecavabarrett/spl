@@ -14,16 +14,16 @@ public:
     explicit boolean(const bool d) : data(d) {}
     [[nodiscard]] bool tp_cpp_type() const {return data;}
 
-    [[nodiscard]] nome_ptr_protetto reduce(storage& s) const final {
+    [[nodiscard]] pointer reduce(storage& s) const final {
         return std::make_shared<const boolean>(data);
     }
-    static ptr dyn_cast(nome_ptr_protetto x){return std::dynamic_pointer_cast<const boolean>(x);}
+    static ptr dyn_cast(pointer x){return std::dynamic_pointer_cast<const boolean>(x);}
 private:
     const bool data;
 };
 
 
-inline expression::nome_ptr_pubblico make_boolean(const bool d){
+inline expression::ptr make_boolean(const bool d){
     return std::make_shared<const boolean>(d);
 }
 

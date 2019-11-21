@@ -8,13 +8,13 @@ namespace l1 {
 
 class expression {
 public:
-    typedef const std::shared_ptr<const expression> nome_ptr_pubblico;
+    typedef const std::shared_ptr<const expression> ptr;
     [[nodiscard]] virtual bool is_value() const { return false; }
     [[nodiscard]] virtual bool is_operation() const { return false; }
     [[nodiscard]] virtual bool is_location() const { return false; }
-    [[nodiscard]] virtual nome_ptr_pubblico reduce(storage& s) const = 0;
+    [[nodiscard]] virtual ptr reduce(storage& s) const = 0;
 protected:
-    typedef const std::shared_ptr<const expression> nome_ptr_protetto;
+    typedef const std::shared_ptr<const expression> pointer;
 };
 
 }

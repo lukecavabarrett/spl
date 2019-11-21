@@ -13,16 +13,16 @@ public:
     [[nodiscard]] bool is_natural() const final { return true; }
     explicit natural(const data_t d) : data(d) {}
     [[nodiscard]] data_t tp_cpp_type() const { return data; }
-    [[nodiscard]] nome_ptr_protetto reduce(storage& s) const final {
+    [[nodiscard]] pointer reduce(storage& s) const final {
         return std::make_shared<const natural>(data);
     }
-    static ptr dyn_cast(nome_ptr_protetto x){return std::dynamic_pointer_cast<const natural>(x);}
+    static ptr dyn_cast(pointer x){return std::dynamic_pointer_cast<const natural>(x);}
 private:
     const data_t data;
 };
 
 
-expression::nome_ptr_pubblico make_natural(natural::data_t d){
+expression::ptr make_natural(natural::data_t d){
     return std::make_shared<const natural>(d);
 }
 

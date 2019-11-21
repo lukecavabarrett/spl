@@ -19,14 +19,14 @@ public:
     typedef std::shared_ptr<const unit> ptr;
     [[nodiscard]] bool is_unit() const final {return true;}
     explicit unit() {}
-    [[nodiscard]] nome_ptr_protetto reduce(storage& s) const final {
+    [[nodiscard]] pointer reduce(storage& s) const final {
         return std::make_shared<const unit>();
     }
-    static ptr dyn_cast(nome_ptr_protetto x){return std::dynamic_pointer_cast<const unit>(x);}
+    static ptr dyn_cast(pointer x){return std::dynamic_pointer_cast<const unit>(x);}
 private:
 };
 
-expression::nome_ptr_pubblico make_unit(){
+expression::ptr make_unit(){
     return std::make_shared<const unit>();
 }
 
